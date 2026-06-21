@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KOUAKOU ANNE — Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fraunces', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          },
+          colors: {
+            'coral': '#FF6B5B',
+            'sun': '#FFC857',
+            'grape': '#7B5EA7',
+            'mint': '#3DDC97',
+            'ink': '#1F1B2E',
+            'cream': '#FFF8F0',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #FFF8F0; }
+
+    .skill-bar-fill { width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+
+    /* Organic blobs */
+    .blob {
+      position: absolute;
+      border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+      filter: blur(0px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes blob-float {
+      0%, 100% { transform: translate(0,0) rotate(0deg); }
+      33% { transform: translate(20px,-25px) rotate(8deg); }
+      66% { transform: translate(-15px,15px) rotate(-6deg); }
+    }
+    .blob-anim { animation: blob-float 14s ease-in-out infinite; }
+
+    .hero-shape {
+      border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    }
+
+    .card-blob {
+      border-radius: 30px 30px 30px 8px;
+    }
+    .card-blob-alt {
+      border-radius: 30px 8px 30px 30px;
+    }
+
+    .squiggle-underline {
+      position: relative;
+    }
+    .squiggle-underline::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -6px;
+      height: 8px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0 5 Q 10 0, 20 5 T 40 5 T 60 5 T 80 5 T 100 5' stroke='%23FF6B5B' stroke-width='3' fill='none'/%3E%3C/svg%3E") repeat-x;
+      background-size: 40px 8px;
+    }
+
+    .timeline-blob-line {
+      background: linear-gradient(180deg, #FF6B5B, #FFC857, #3DDC97, #7B5EA7);
+      border-radius: 999px;
+    }
+
+    .eyebrow-pill {
+      background: #1F1B2E;
+      color: #FFF8F0;
+    }
+
+    .grain {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' result='t'/%3E%3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0.05s; }
+    .reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.15s; }
+    .reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.25s; }
+    .reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.35s; }
+    .reveal-stagger.in-view > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-stagger > * {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans text-ink overflow-x-hidden">
+
+<!-- NAVBAR -->
+<nav class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b-2 border-ink px-8 flex items-center h-20 gap-4">
+  <div class="flex items-center gap-3 mr-6">
+    <div class="w-11 h-11 bg-coral flex items-center justify-center font-display font-bold text-cream text-lg shrink-0" style="border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;">K</div>
+    <div class="leading-tight">
+      <div class="font-display font-bold text-sm text-ink">Akissi Anne KOUAKOU</div>
+      <div class="text-xs text-ink/60 font-medium">Data Analyst</div>
+    </div>
+  </div>
+  <div class="hidden md:flex items-center gap-1 flex-1">
+    <a href="#hero" class="nav-link px-4 py-2 rounded-full text-sm font-bold text-cream bg-ink no-underline transition-colors">Accueil</a>
+    <a href="#about" class="px-4 py-2 rounded-full text-sm font-semibold text-ink/60 hover:bg-ink/5 hover:text-ink no-underline transition-colors">À Propos</a>
+    <a href="#skills" class="px-4 py-2 rounded-full text-sm font-semibold text-ink/60 hover:bg-ink/5 hover:text-ink no-underline transition-colors">Compétences</a>
+    <a href="#projects" class="px-4 py-2 rounded-full text-sm font-semibold text-ink/60 hover:bg-ink/5 hover:text-ink no-underline transition-colors">Projets</a>
+    <a href="#formation" class="px-4 py-2 rounded-full text-sm font-semibold text-ink/60 hover:bg-ink/5 hover:text-ink no-underline transition-colors">Formation</a>
+    <a href="#contact" class="px-4 py-2 rounded-full text-sm font-semibold text-ink/60 hover:bg-ink/5 hover:text-ink no-underline transition-colors">Contact</a>
+  </div>
+  <a href="#contact" class="ml-auto flex items-center gap-2 bg-coral hover:bg-ink text-cream font-bold text-sm px-6 py-2.5 rounded-full no-underline transition-colors whitespace-nowrap">
+    Me Contacter
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="relative overflow-hidden px-24 pt-20 pb-24" style="background: #FFF8F0;">
+  <div class="blob blob-anim w-[420px] h-[420px] bg-sun/40 -top-32 -right-20"></div>
+  <div class="blob blob-anim w-[280px] h-[280px] bg-mint/30 top-1/2 -left-24" style="animation-delay: -4s;"></div>
+
+  <div class="relative z-10 flex items-start gap-16">
+    <div class="flex-1 pt-6">
+      <h1 class="font-display text-5xl md:text-6xl font-bold text-ink leading-[1.05] mb-2">Akissi Anne </h1>
+      <h1 class="font-display text-5xl md:text-6xl font-bold text-coral leading-[1.05] mb-6">KOUAKOU</h1>
+      <p class="text-lg font-bold text-grape mb-5">Data Analyst Junior</p>
+      <p class="text-base text-ink/70 leading-relaxed max-w-lg mb-8">
+Data Analyst junior avec un intérêt particulier pour l'analyse, la visualisation et la valorisation
+des données. J'aime explorer les données, en tirer des enseignements et concevoir des
+tableaux de bord clairs pour aider à la prise de décision      </p>
+      <div class="flex flex-wrap gap-2.5 mb-9">
+        <span class="px-4 py-2 rounded-full text-xs font-bold text-ink bg-sun/60 border-2 border-ink/10">Python</span>
+        <span class="px-4 py-2 rounded-full text-xs font-bold text-ink bg-mint/40 border-2 border-ink/10">SQL</span>
+        <span class="px-4 py-2 rounded-full text-xs font-bold text-ink bg-coral/25 border-2 border-ink/10">Power BI</span>
+        <span class="px-4 py-2 rounded-full text-xs font-bold text-ink bg-mint/40 border-2 border-ink/10">Pandas</span>
+      </div>
+      <div class="flex gap-4 flex-wrap mb-10">
+        <a href="/CV - ANNE-KOUAKOU.pdf.pdf" download class="inline-flex items-center gap-2 bg-ink hover:bg-coral text-cream font-bold text-sm px-7 py-3.5 rounded-full no-underline transition-all hover:-translate-y-0.5 hover:shadow-lg">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Télécharger mon CV
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 border-2 border-ink text-ink bg-transparent hover:bg-ink hover:text-cream font-bold text-sm px-7 py-3.5 rounded-full no-underline transition-all hover:-translate-y-0.5">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Me contacter
+        </a>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs text-ink/50 font-semibold mr-1">Suivez-moi :</span>
+       
+        <a href="https://www.linkedin.com/in/anne-kouakou-a4aa04364" target="_blank" class="w-10 h-10 rounded-full border-2 border-ink/15 bg-cream flex items-center justify-center text-ink hover:bg-coral hover:text-cream hover:border-coral transition-all no-underline">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- CV CARD -->
+    
+</section>
+
+<!-- CONTACT BAR -->
+<div class="bg-ink px-24 py-8 flex justify-around gap-4 relative overflow-hidden">
+  <div class="blob w-64 h-64 bg-coral/20 -top-20 left-1/4"></div>
+  <div class="flex items-center gap-4 relative z-10">
+    <div class="w-12 h-12 bg-sun flex items-center justify-center shrink-0" style="border-radius: 40% 60% 55% 45% / 50% 50% 50% 50%;">
+      <svg class="w-5 h-5 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
+    <div>
+      <div class="text-xs text-cream/50 mb-0.5 font-semibold">Téléphone</div>
+      <div class="text-sm font-bold text-cream">+225 07 59 31 00 61 / 05 84 57 69 39</div>
+    </div>
+  </div>
+  <div class="flex items-center gap-4 relative z-10">
+    <div class="w-12 h-12 bg-coral flex items-center justify-center shrink-0" style="border-radius: 45% 55% 60% 40% / 50% 50% 50% 50%;">
+      <svg class="w-5 h-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </div>
+    <div>
+      <div class="text-xs text-cream/50 mb-0.5 font-semibold">Email</div>
+      <div class="text-sm font-bold text-cream">anne.kouakou@epiech.eu</div>
+    </div>
+  </div>
+  <div class="flex items-center gap-4 relative z-10">
+    <div class="w-12 h-12 bg-mint flex items-center justify-center shrink-0" style="border-radius: 50% 50% 40% 60% / 55% 45% 55% 45%;">
+      <svg class="w-5 h-5 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    </div>
+    <div>
+      <div class="text-xs text-cream/50 mb-0.5 font-semibold">Localisation</div>
+      <div class="text-sm font-bold text-cream">Port Bouët, Côte d'Ivoire</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="reveal py-24 px-24 relative overflow-hidden">
+  <div class="blob blob-anim w-72 h-72 bg-mint/15 top-10 right-0" style="animation-delay: -7s;"></div>
+  <div class="grid grid-cols-2 gap-16 items-center relative z-10">
+    <div class="relative">
+      <div class="absolute -inset-3 bg-coral/15 hero-shape -z-10"></div>
+      <div class="w-full aspect-[4/5] overflow-hidden border-4 border-ink hero-shape">
+        <img src="/anne.jpg" alt="Kadjo Blin Ariel" class="w-full h-full object-cover object-top"/>
+      </div>
+    </div>
+    <div>
+      <span class="inline-block eyebrow-pill text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-5">À Propos</span>
+      <br>
+      <h2 class="font-display text-4xl font-bold text-ink mb-2 squiggle-underline inline-block"> 
+        KOAKOU Akissi Anne </h2>
+      <p class="text-grape text-sm font-bold mt-4 mb-5">Data Analyst Junior passionné</p>
+      <p class="text-ink/70 text-sm leading-7 mb-4">Data Analyst junior, j'ai acquis une expérience pratique à travers la réalisation de projets d'analyse de données. J'ai développé des compétences solides en extraction, nettoyage, analyse et visualisation de données en utilisant des outils comme Python, SQL et Power BI.</p>
+      <div class="grid grid-cols-2 gap-4 mt-6">
+        <div class="bg-sun/30 rounded-2xl p-4"><div class="text-xs font-bold text-ink/50 uppercase tracking-wider">Localisation</div><div class="text-sm font-bold text-ink mt-0.5">Port Bouët, Côte d'Ivoire</div></div>
+        <div class="bg-mint/25 rounded-2xl p-4"><div class="text-xs font-bold text-ink/50 uppercase tracking-wider">Disponibilité</div><div class="text-sm font-bold text-mint-700 mt-0.5">✓ Disponible</div></div>
+        <div class="bg-coral/15 rounded-2xl p-4"><div class="text-xs font-bold text-ink/50 uppercase tracking-wider">LinkedIn</div><div class="text-xs font-bold text-ink mt-0.5">linkedin.com/in/Anne-kouakou</div></div>
+        <div class="bg-grape/15 rounded-2xl p-4"><div class="text-xs font-bold text-ink/50 uppercase tracking-wider">Langues</div><div class="text-sm font-bold text-ink mt-0.5">Français · Anglais</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal py-24 px-24 relative overflow-hidden" style="background: #1F1B2E;">
+  <div class="blob blob-anim w-96 h-96 bg-coral/10 -top-32 -left-32"></div>
+  <div class="blob blob-anim w-72 h-72 bg-grape/15 bottom-0 right-10" style="animation-delay: -5s;"></div>
+  <div class="text-center mb-12 relative z-10">
+    <span class="inline-block bg-sun text-ink text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-4">Expertise</span>
+    <h2 class="font-display text-4xl font-bold text-cream mt-3 mb-2">Compétences Techniques</h2>
+  </div>
+  <div class="grid grid-cols-2 gap-6 relative z-10 reveal-stagger">
+
+    <!-- Technologies -->
+    <div class="bg-cream/[0.04] border border-cream/10 rounded-[28px] p-7 backdrop-blur-sm">
+      <div class="flex items-center gap-2 font-display font-bold text-cream mb-6 text-lg"><span class="w-3 h-3 rounded-full bg-coral shrink-0"></span>Technologies</div>
+      <div class="flex flex-wrap gap-4">
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">Python</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/mysql/F29111" alt="SQL" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">SQL</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analyse & Visualisation -->
+    <div class="bg-cream/[0.04] border border-cream/10 rounded-[28px] p-7 backdrop-blur-sm">
+      <div class="flex items-center gap-2 font-display font-bold text-cream mb-6 text-lg"><span class="w-3 h-3 rounded-full bg-sun shrink-0"></span>Analyse &amp; Visualisation</div>
+      <div class="flex flex-wrap gap-4">
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/powerbi/F2C811" alt="Power BI" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80 text-center">Power BI</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/pandas/F29111" alt="Pandas" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">Pandas</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/numpy/FFC857" alt="NumPy" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">NumPy</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/python/3DDC97" alt="Matplotlib" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80 text-center">Matplotlib</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/scikitlearn/F29111" alt="Scikit-learn" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80 text-center">Scikit-learn</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bases de données -->
+    <div class="bg-cream/[0.04] border border-cream/10 rounded-[28px] p-7 backdrop-blur-sm">
+      <div class="flex items-center gap-2 font-display font-bold text-cream mb-6 text-lg"><span class="w-3 h-3 rounded-full bg-mint shrink-0"></span>Bases de données</div>
+      <div class="flex flex-wrap gap-4">
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/mysql/3DDC97" alt="MySQL" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">MySQL</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/microsoftsqlserver/7B5EA7" alt="SQL Server" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80 text-center">SQL Server</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outils -->
+    <div class="bg-cream/[0.04] border border-cream/10 rounded-[28px] p-7 backdrop-blur-sm">
+      <div class="flex items-center gap-2 font-display font-bold text-cream mb-6 text-lg"><span class="w-3 h-3 rounded-full bg-grape shrink-0"></span>Outils</div>
+      <div class="flex flex-wrap gap-4">
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/jupyter/F29111" alt="Jupyter Notebook" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80 text-center">Jupyter</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/git/FF6B5B" alt="Git" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">Git</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/github/FFF8F0" alt="GitHub" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">GitHub</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/trello/3DDC97" alt="Trello" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">Trello</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal py-24 px-24 relative overflow-hidden">
+  <div class="blob blob-anim w-80 h-80 bg-sun/15 top-0 right-0" style="animation-delay: -3s;"></div>
+  <div class="text-center mb-14 relative z-10">
+    <span class="inline-block eyebrow-pill text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full">Projets</span>
+    <h2 class="font-display text-4xl font-bold text-ink mt-3 mb-2">Projets Réalisés</h2>
+    <p class="text-ink/60 text-sm">Découvrez une sélection de mes projets d'analyse de données et tableaux de bord</p>
+  </div>
+  <div class="grid grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10 reveal-stagger">
+
+    <!-- DATAVIZ -->
+    <div class="card-blob border-2 border-ink overflow-hidden bg-cream hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+      <div class="bg-coral/15 p-6 pb-5">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 bg-coral flex items-center justify-center text-cream shrink-0" style="border-radius: 40% 60% 55% 45% / 50% 50% 50% 50%;">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
+          </div>
+          <span class="text-xs font-bold text-ink/30">#01</span>
+        </div>
+        <h3 class="font-display text-lg font-bold text-ink mb-1">DataViz</h3>
+        <p class="text-xs text-ink/60 leading-relaxed">Analyse et visualisation des données d'une plateforme e-commerce pour comprendre les habitudes d'achat des utilisateurs.</p>
+      </div>
+      <div class="p-6 pt-4 border-t-2 border-ink/10 flex-1 flex flex-col">
+        <div class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-2">Technologies utilisées</div>
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">Python</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">Jupyter Notebook</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">Pandas</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">NumPy</span>
+        </div>
+        <div class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-2">Mon rôle</div>
+        <ul class="mb-5 space-y-1.5 flex-1">
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-coral mt-1">●</span>Collecte des données e-commerce</li>
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-coral mt-1">●</span>Nettoyage et analyse des données</li>
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-coral mt-1">●</span>Création de visualisations statistiques</li>
+        </ul>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="#" class="flex items-center justify-center gap-1.5 py-2.5 rounded-full text-xs font-bold border-2 border-ink text-ink bg-cream hover:bg-ink hover:text-cream no-underline transition-colors">Code</a>
+          <a href="#" class="flex items-center justify-center gap-1.5 py-2.5 rounded-full text-xs font-bold text-cream bg-coral no-underline hover:bg-ink transition-colors">Démo</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIG DATA -->
+    <div class="card-blob-alt border-2 border-ink overflow-hidden bg-cream hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+      <div class="bg-grape/15 p-6 pb-5">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 bg-grape flex items-center justify-center text-cream shrink-0" style="border-radius: 50% 50% 40% 60% / 55% 45% 55% 45%;">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6a6 6 0 1 0 6 6"/><circle cx="12" cy="12" r="1"/></svg>
+          </div>
+          <span class="text-xs font-bold text-ink/30">#02</span>
+        </div>
+        <h3 class="font-display text-lg font-bold text-ink mb-1">Big Data</h3>
+        <p class="text-xs text-ink/60 leading-relaxed">Analyse de données médicales et développement d'un modèle de Machine Learning pour prédire la présence d'un cancer du sein.</p>
+      </div>
+      <div class="p-6 pt-4 border-t-2 border-ink/10 flex-1 flex flex-col">
+        <div class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-2">Technologies utilisées</div>
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-grape/15 text-ink font-semibold">Python</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-grape/15 text-ink font-semibold">Scikit-learn</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-grape/15 text-ink font-semibold">Matplotlib</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-grape/15 text-ink font-semibold">Seaborn</span>
+        </div>
+        <div class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-2">Mon rôle</div>
+        <ul class="mb-5 space-y-1.5 flex-1">
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-grape mt-1">●</span>Préparation et analyse des données médicales</li>
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-grape mt-1">●</span>Entraînement du modèle de prédiction</li>
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-grape mt-1">●</span>Évaluation des performances</li>
+        </ul>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="#" class="flex items-center justify-center gap-1.5 py-2.5 rounded-full text-xs font-bold border-2 border-ink text-ink bg-cream hover:bg-ink hover:text-cream no-underline transition-colors">Code</a>
+          <a href="#" class="flex items-center justify-center gap-1.5 py-2.5 rounded-full text-xs font-bold text-cream bg-grape no-underline hover:bg-ink transition-colors">Démo</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANALYSE DE SENTIMENTS -->
+    <div class="card-blob border-2 border-ink overflow-hidden bg-cream hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+      <div class="bg-mint/20 p-6 pb-5">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 bg-mint flex items-center justify-center text-ink shrink-0" style="border-radius: 45% 55% 60% 40% / 50% 50% 50% 50%;">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <span class="text-xs font-bold text-ink/30">#03</span>
+        </div>
+        <h3 class="font-display text-lg font-bold text-ink mb-1">Analyse de Sentiments en Temps Réel</h3>
+        <p class="text-xs text-ink/60 leading-relaxed">Analyse des avis publiés sur les réseaux sociaux afin d'identifier automatiquement les sentiments grâce au Machine Learning.</p>
+      </div>
+      <div class="p-6 pt-4 border-t-2 border-ink/10 flex-1 flex flex-col">
+        <div class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-2">Technologies utilisées</div>
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-mint/20 text-ink font-semibold">Python</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-mint/20 text-ink font-semibold">Apache Kafka</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-mint/20 text-ink font-semibold">Scikit-learn</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-mint/20 text-ink font-semibold">NLTK</span>
+        </div>
+        <div class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-2">Mon rôle</div>
+        <ul class="mb-5 space-y-1.5 flex-1">
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-mint mt-1">●</span>Collecte des données en temps réel</li>
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-mint mt-1">●</span>Préparation des données textuelles</li>
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-mint mt-1">●</span>Entraînement du modèle de classification</li>
+        </ul>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="#" class="flex items-center justify-center gap-1.5 py-2.5 rounded-full text-xs font-bold border-2 border-ink text-ink bg-cream hover:bg-ink hover:text-cream no-underline transition-colors">Code</a>
+          <a href="#" class="flex items-center justify-center gap-1.5 py-2.5 rounded-full text-xs font-bold text-ink bg-mint no-underline hover:bg-ink hover:text-cream transition-colors">Démo</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FORMATION -->
+<section id="formation" class="reveal py-24 px-24 relative overflow-hidden" style="background: #FFF1E0;">
+  <div class="blob blob-anim w-80 h-80 bg-coral/10 top-0 left-1/3" style="animation-delay: -2s;"></div>
+  <span class="inline-block eyebrow-pill text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-5 relative z-10">Formation</span>
+  <h2 class="font-display text-4xl font-bold text-ink mb-2 relative z-10">Parcours de Formation</h2>
+  <p class="text-ink/60 text-sm mb-8 relative z-10">Mon parcours académique et professionnel.</p>
+
+  <!-- Stats -->
+  <div class="flex justify-center gap-16 bg-cream rounded-[32px] p-7 mb-14 border-2 border-ink relative z-10">
+    <div class="flex flex-col items-center gap-1">
+      <span class="font-display text-4xl font-bold text-coral leading-none">3</span>
+      <span class="text-sm text-ink/60 font-semibold">Formations</span>
+    </div>
+    <div class="flex flex-col items-center gap-1">
+      <span class="font-display text-4xl font-bold text-grape leading-none">2</span>
+      <span class="text-sm text-ink/60 font-semibold">En cours</span>
+    </div>
+    <div class="flex flex-col items-center gap-1">
+      <span class="font-display text-4xl font-bold text-mint leading-none">7+</span>
+      <span class="text-sm text-ink/60 font-semibold">Technologies</span>
+    </div>
+    <div class="flex flex-col items-center gap-1">
+      <span class="font-display text-4xl font-bold" style="color:#D49A1F;">100%</span>
+      <span class="text-sm text-ink/60 font-semibold">Motivation</span>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="relative flex flex-col gap-10">
+    <div class="absolute left-1/2 top-0 bottom-0 w-1 timeline-blob-line -translate-x-1/2 z-0"></div>
+
+    <!-- Item gauche : Epitech -->
+    <div class="grid grid-cols-[1fr_24px_1fr] items-center gap-6 relative z-10">
+      <div class="bg-cream border-2 border-ink card-blob p-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 bg-coral flex items-center justify-center text-cream shrink-0" style="border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="flex flex-col items-end gap-1">
+            <span class="text-xs font-bold text-ink/50">2025 – 2026</span>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-mint/30" style="color:#1E7A52;">En cours</span>
+          </div>
+        </div>
+        <h3 class="font-display font-bold text-ink mb-0.5">Formation Data Analyst</h3>
+        <div class="text-sm font-bold text-coral mb-2">Epitech France (wecode) — Abidjan</div>
+        <p class="text-xs text-ink/60 leading-relaxed">Formation spécialisée en analyse, visualisation et valorisation des données.</p>
+      </div>
+      <div class="w-5 h-5 rounded-full border-[3px] border-ink bg-coral justify-self-center shrink-0"></div>
+      <div class="invisible"></div>
+    </div>
+
+    <!-- Item droite : UVCI -->
+    <div class="grid grid-cols-[1fr_24px_1fr] items-center gap-6 relative z-10">
+      <div class="invisible"></div>
+      <div class="w-5 h-5 rounded-full border-[3px] border-ink bg-sun justify-self-center shrink-0"></div>
+      <div class="bg-cream border-2 border-ink card-blob-alt p-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 bg-grape flex items-center justify-center text-cream shrink-0" style="border-radius: 50% 50% 40% 60% / 55% 45% 55% 45%;">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div class="flex flex-col items-end gap-1">
+            <span class="text-xs font-bold text-ink/50">2024 – En cours</span>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-mint/30" style="color:#1E7A52;">En cours</span>
+          </div>
+        </div>
+        <h3 class="font-display font-bold text-ink mb-0.5">Licence 2</h3>
+        <div class="text-sm font-bold text-grape mb-2">Université Virtuelle de Côte d'Ivoire — Abidjan</div>
+        <p class="text-xs text-ink/60 leading-relaxed">Spécialité : Sciences et Technologies Géospatiales</p>
+      </div>
+    </div>
+
+    <!-- Item gauche : Bac -->
+    <div class="grid grid-cols-[1fr_24px_1fr] items-center gap-6 relative z-10">
+      <div class="bg-cream border-2 border-ink card-blob p-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 bg-mint flex items-center justify-center text-ink shrink-0" style="border-radius: 45% 55% 50% 50% / 50% 50% 50% 50%;">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="flex flex-col items-end gap-1">
+            <span class="text-xs font-bold text-ink/50">2023 – 2024</span>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-ink/10 text-ink/60">Complété</span>
+          </div>
+        </div>
+        <h3 class="font-display font-bold text-ink mb-0.5">Baccalauréat série D</h3>
+        <div class="text-sm font-bold mb-2" style="color:#1E7A52;">Groupe Scolaire Les Roitelets — Abidjan</div>
+        <p class="text-xs text-ink/60 leading-relaxed">Formation académique fondamentale, série scientifique.</p>
+      </div>
+      <div class="w-5 h-5 rounded-full border-[3px] border-ink bg-mint justify-self-center shrink-0"></div>
+      <div class="invisible"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal py-24 px-24 relative overflow-hidden">
+  <div class="blob blob-anim w-72 h-72 bg-grape/15 -bottom-20 right-0" style="animation-delay: -6s;"></div>
+  <span class="inline-block eyebrow-pill text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-5 relative z-10">Contact</span>
+  <h2 class="font-display text-4xl font-bold text-ink mb-2 relative z-10">Travaillons Ensemble</h2>
+  <p class="text-ink/60 text-sm mb-12 relative z-10">Vous avez un projet ? N'hésitez pas à me contacter.</p>
+  <div class="grid grid-cols-2 gap-12 items-start relative z-10">
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1.5">
+        <label class="text-xs font-bold text-ink">Nom complet</label>
+        <input type="text" placeholder="Votre nom" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors bg-cream"/>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="text-xs font-bold text-ink">Email</label>
+        <input type="email" placeholder="votre@email.com" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors bg-cream"/>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="text-xs font-bold text-ink">Sujet</label>
+        <input type="text" placeholder="Objet de votre message" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors bg-cream"/>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="text-xs font-bold text-ink">Message</label>
+        <textarea placeholder="Décrivez votre projet..." rows="5" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors resize-y bg-cream"></textarea>
+      </div>
+      <button class="self-start inline-flex items-center gap-2 bg-ink hover:bg-coral text-cream font-bold text-sm px-8 py-3.5 rounded-full border-none cursor-pointer transition-colors">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Envoyer le message
+      </button>
+    </div>
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-4 bg-sun/20 border-2 border-ink/10 rounded-2xl px-5 py-4">
+        <div class="w-11 h-11 bg-coral rounded-full flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div><div class="text-xs text-ink/50 mb-0.5 font-semibold">Téléphone</div><div class="text-sm font-bold text-ink">+225 07 59 31 00 61 </div></div>
+      </div>
+      <div class="flex items-center gap-4 bg-mint/20 border-2 border-ink/10 rounded-2xl px-5 py-4">
+        <div class="w-11 h-11 bg-grape rounded-full flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div><div class="text-xs text-ink/50 mb-0.5 font-semibold">Email</div><div class="text-sm font-bold text-ink">anne.kouakou@epitech.eu</div></div>
+      </div>
+      <div class="flex items-center gap-4 bg-coral/15 border-2 border-ink/10 rounded-2xl px-5 py-4">
+        <div class="w-11 h-11 bg-mint rounded-full flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div><div class="text-xs text-ink/50 mb-0.5 font-semibold">Localisation</div><div class="text-sm font-bold text-ink">Port Bouët, Côte d'Ivoire</div></div>
+      </div>
+      <div class="flex items-center gap-4 bg-grape/15 border-2 border-ink/10 rounded-2xl px-5 py-4">
+        <div class="w-11 h-11 bg-sun rounded-full flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div><div class="text-xs text-ink/50 mb-0.5 font-semibold">LinkedIn</div><div class="text-sm font-bold text-ink">linkedin.com/in/anne-kouakou</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="px-24 py-7 flex justify-between items-center" style="background:#1F1B2E;">
+  <p class="text-xs text-cream/40 font-medium">© Anne Kouakou. Tous droits réservés.</p>
+  <p class="text-xs text-cream/40 font-medium">Développé  à Port Bouët, Côte d'Ivoire</p>
+</footer>
+
+<script>
+  // Skill bars animation
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.skill-card').forEach(card => skillObserver.observe(card));
+
+  // Scroll reveal animation
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const scrollObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('text-cream', 'bg-ink');
+          link.classList.add('text-ink/60');
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => scrollObs.observe(s));
+</script>
+</body>
+</html>
