@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KOUAKOU ANNE — Data Analyst</title>
+  <title>KOUAKOU ANNE  Data Analyst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -120,12 +120,12 @@
 <body class="font-sans text-ink overflow-x-hidden">
 
 <!-- NAVBAR -->
-<nav class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b-2 border-ink px-8 flex items-center h-20 gap-4">
-  <div class="flex items-center gap-3 mr-6">
-    <div class="w-11 h-11 bg-coral flex items-center justify-center font-display font-bold text-cream text-lg shrink-0" style="border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;">K</div>
+<nav class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b-2 border-ink px-4 md:px-8 flex items-center h-16 md:h-20 gap-4">
+  <div class="flex items-center gap-3 mr-auto md:mr-6">
+    <div class="w-10 h-10 md:w-11 md:h-11 bg-coral flex items-center justify-center font-display font-bold text-cream text-lg shrink-0" style="border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;">K</div>
     <div class="leading-tight">
       <div class="font-display font-bold text-sm text-ink">Akissi Anne KOUAKOU</div>
-      <div class="text-xs text-ink/60 font-medium">Data Analyst</div>
+      <div class="text-xs text-ink/60 font-medium">Data Analyst Junior</div>
     </div>
   </div>
   <div class="hidden md:flex items-center gap-1 flex-1">
@@ -136,13 +136,29 @@
     <a href="#formation" class="px-4 py-2 rounded-full text-sm font-semibold text-ink/60 hover:bg-ink/5 hover:text-ink no-underline transition-colors">Formation</a>
     <a href="#contact" class="px-4 py-2 rounded-full text-sm font-semibold text-ink/60 hover:bg-ink/5 hover:text-ink no-underline transition-colors">Contact</a>
   </div>
-  <a href="#contact" class="ml-auto flex items-center gap-2 bg-coral hover:bg-ink text-cream font-bold text-sm px-6 py-2.5 rounded-full no-underline transition-colors whitespace-nowrap">
+  <a href="#contact" class="hidden md:flex items-center gap-2 bg-coral hover:bg-ink text-cream font-bold text-sm px-6 py-2.5 rounded-full no-underline transition-colors whitespace-nowrap">
     Me Contacter
   </a>
+  <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center gap-1.5 p-2 rounded-xl hover:bg-ink/5 transition-colors" aria-label="Menu">
+    <span class="w-5 h-0.5 bg-ink block"></span>
+    <span class="w-5 h-0.5 bg-ink block"></span>
+    <span class="w-5 h-0.5 bg-ink block"></span>
+  </button>
 </nav>
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[60] bg-cream flex flex-col items-center justify-center gap-6">
+  <button id="close-menu" class="absolute top-5 right-5 w-10 h-10 flex items-center justify-center text-ink text-xl font-bold rounded-full border-2 border-ink/20 hover:bg-ink hover:text-cream transition-colors">✕</button>
+  <a href="#hero" class="mobile-nav-link text-2xl font-display font-bold text-ink no-underline hover:text-coral transition-colors">Accueil</a>
+  <a href="#about" class="mobile-nav-link text-2xl font-display font-bold text-ink no-underline hover:text-coral transition-colors">À Propos</a>
+  <a href="#skills" class="mobile-nav-link text-2xl font-display font-bold text-ink no-underline hover:text-coral transition-colors">Compétences</a>
+  <a href="#projects" class="mobile-nav-link text-2xl font-display font-bold text-ink no-underline hover:text-coral transition-colors">Projets</a>
+  <a href="#formation" class="mobile-nav-link text-2xl font-display font-bold text-ink no-underline hover:text-coral transition-colors">Formation</a>
+  <a href="#contact" class="mobile-nav-link text-2xl font-display font-bold text-ink no-underline hover:text-coral transition-colors">Contact</a>
+  <a href="#contact" class="mt-4 bg-coral text-cream font-bold text-sm px-8 py-3 rounded-full no-underline mobile-nav-link">Me Contacter</a>
+</div>
 
 <!-- HERO -->
-<section id="hero" class="relative overflow-hidden px-24 pt-20 pb-24" style="background: #FFF8F0;">
+<section id="hero" class="relative overflow-hidden px-4 sm:px-10 md:px-24 pt-12 md:pt-20 pb-16 md:pb-24" style="background: #FFF8F0;">
   <div class="blob blob-anim w-[420px] h-[420px] bg-sun/40 -top-32 -right-20"></div>
   <div class="blob blob-anim w-[280px] h-[280px] bg-mint/30 top-1/2 -left-24" style="animation-delay: -4s;"></div>
 
@@ -152,7 +168,7 @@
       <h1 class="font-display text-5xl md:text-6xl font-bold text-coral leading-[1.05] mb-6">KOUAKOU</h1>
       <p class="text-lg font-bold text-grape mb-5">Data Analyst Junior</p>
       <p class="text-base text-ink/70 leading-relaxed max-w-lg mb-8">
-Data Analyst junior avec un intérêt particulier pour l'analyse, la visualisation et la valorisation
+ Avec un intérêt particulier pour l'analyse, la visualisation et la valorisation
 des données. J'aime explorer les données, en tirer des enseignements et concevoir des
 tableaux de bord clairs pour aider à la prise de décision      </p>
       <div class="flex flex-wrap gap-2.5 mb-9">
@@ -185,7 +201,7 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
 </section>
 
 <!-- CONTACT BAR -->
-<div class="bg-ink px-24 py-8 flex justify-around gap-4 relative overflow-hidden">
+<div class="bg-ink px-4 sm:px-10 md:px-24 py-6 md:py-8 grid grid-cols-1 sm:grid-cols-3 gap-4 relative overflow-hidden">
   <div class="blob w-64 h-64 bg-coral/20 -top-20 left-1/4"></div>
   <div class="flex items-center gap-4 relative z-10">
     <div class="w-12 h-12 bg-sun flex items-center justify-center shrink-0" style="border-radius: 40% 60% 55% 45% / 50% 50% 50% 50%;">
@@ -202,7 +218,7 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
     </div>
     <div>
       <div class="text-xs text-cream/50 mb-0.5 font-semibold">Email</div>
-      <div class="text-sm font-bold text-cream">anne.kouakou@epiech.eu</div>
+      <div class="text-sm font-bold text-cream">anne.kouakou@epitech.eu</div>
     </div>
   </div>
   <div class="flex items-center gap-4 relative z-10">
@@ -217,9 +233,9 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
 </div>
 
 <!-- ABOUT -->
-<section id="about" class="reveal py-24 px-24 relative overflow-hidden">
+<section id="about" class="reveal py-12 md:py-24 px-4 sm:px-10 md:px-24 relative overflow-hidden">
   <div class="blob blob-anim w-72 h-72 bg-mint/15 top-10 right-0" style="animation-delay: -7s;"></div>
-  <div class="grid grid-cols-2 gap-16 items-center relative z-10">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center relative z-10">
     <div class="relative">
       <div class="absolute -inset-3 bg-coral/15 hero-shape -z-10"></div>
       <div class="w-full aspect-[4/5] overflow-hidden border-4 border-ink hero-shape">
@@ -232,7 +248,7 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
       <h2 class="font-display text-4xl font-bold text-ink mb-2 squiggle-underline inline-block"> 
         KOAKOU Akissi Anne </h2>
       <p class="text-grape text-sm font-bold mt-4 mb-5">Data Analyst Junior passionné</p>
-      <p class="text-ink/70 text-sm leading-7 mb-4">Data Analyst junior, j'ai acquis une expérience pratique à travers la réalisation de projets d'analyse de données. J'ai développé des compétences solides en extraction, nettoyage, analyse et visualisation de données en utilisant des outils comme Python, SQL et Power BI.</p>
+      <p class="text-ink/70 text-sm leading-7 mb-4"> J'ai acquis une expérience pratique à travers la réalisation de projets d'analyse de données. J'ai développé des compétences solides en extraction, nettoyage, analyse et visualisation de données en utilisant des outils comme Python, SQL et Power BI.</p>
       <div class="grid grid-cols-2 gap-4 mt-6">
         <div class="bg-sun/30 rounded-2xl p-4"><div class="text-xs font-bold text-ink/50 uppercase tracking-wider">Localisation</div><div class="text-sm font-bold text-ink mt-0.5">Port Bouët, Côte d'Ivoire</div></div>
         <div class="bg-mint/25 rounded-2xl p-4"><div class="text-xs font-bold text-ink/50 uppercase tracking-wider">Disponibilité</div><div class="text-sm font-bold text-mint-700 mt-0.5">✓ Disponible</div></div>
@@ -244,14 +260,14 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="reveal py-24 px-24 relative overflow-hidden" style="background: #1F1B2E;">
+<section id="skills" class="reveal py-12 md:py-24 px-4 sm:px-10 md:px-24 relative overflow-hidden" style="background: #1F1B2E;">
   <div class="blob blob-anim w-96 h-96 bg-coral/10 -top-32 -left-32"></div>
   <div class="blob blob-anim w-72 h-72 bg-grape/15 bottom-0 right-10" style="animation-delay: -5s;"></div>
-  <div class="text-center mb-12 relative z-10">
+  <div class="text-center mb-10 md:mb-12 relative z-10">
     <span class="inline-block bg-sun text-ink text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-4">Expertise</span>
-    <h2 class="font-display text-4xl font-bold text-cream mt-3 mb-2">Compétences Techniques</h2>
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-cream mt-3 mb-2">Compétences Techniques</h2>
   </div>
-  <div class="grid grid-cols-2 gap-6 relative z-10 reveal-stagger">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10 reveal-stagger">
 
     <!-- Technologies -->
     <div class="bg-cream/[0.04] border border-cream/10 rounded-[28px] p-7 backdrop-blur-sm">
@@ -265,6 +281,18 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
           <img src="https://cdn.simpleicons.org/mysql/F29111" alt="SQL" class="w-9 h-9"/>
           <span class="text-xs font-semibold text-cream/80">SQL</span>
         </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/tensorflow/FF6F00" alt="TensorFlow" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80 text-center">TensorFlow / Keras</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/streamlit/FF4B4B" alt="Streamlit" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">Streamlit</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
+          <img src="https://cdn.simpleicons.org/keras/D00000" alt="MobileNetV2" class="w-9 h-9"/>
+          <span class="text-xs font-semibold text-cream/80">MobileNetV2</span>
+        </div>
       </div>
     </div>
 
@@ -273,7 +301,13 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
       <div class="flex items-center gap-2 font-display font-bold text-cream mb-6 text-lg"><span class="w-3 h-3 rounded-full bg-sun shrink-0"></span>Analyse &amp; Visualisation</div>
       <div class="flex flex-wrap gap-4">
         <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
-          <img src="https://cdn.simpleicons.org/powerbi/F2C811" alt="Power BI" class="w-9 h-9"/>
+          <!-- Power BI SVG -->
+          <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="4" height="12" x="2" y="12" rx="1" fill="#F2C811"/>
+            <rect width="4" height="16" x="8" y="8" rx="1" fill="#F2C811" opacity="0.85"/>
+            <rect width="4" height="20" x="14" y="4" rx="1" fill="#F2C811" opacity="0.7"/>
+            <rect width="4" height="24" x="20" y="0" rx="1" fill="#F2C811" opacity="0.5"/>
+          </svg>
           <span class="text-xs font-semibold text-cream/80 text-center">Power BI</span>
         </div>
         <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
@@ -304,7 +338,13 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
           <span class="text-xs font-semibold text-cream/80">MySQL</span>
         </div>
         <div class="flex flex-col items-center gap-2 bg-cream/[0.06] rounded-2xl px-5 py-4 w-[110px]">
-          <img src="https://cdn.simpleicons.org/microsoftsqlserver/7B5EA7" alt="SQL Server" class="w-9 h-9"/>
+          <!-- SQL Server SVG -->
+          <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="12" cy="6" rx="9" ry="3.5" fill="#7B5EA7"/>
+            <path d="M3 6v4c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5V6" fill="#7B5EA7" opacity="0.7"/>
+            <path d="M3 10v4c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5v-4" fill="#7B5EA7" opacity="0.5"/>
+            <path d="M3 14v4c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5v-4" fill="#7B5EA7" opacity="0.35"/>
+          </svg>
           <span class="text-xs font-semibold text-cream/80 text-center">SQL Server</span>
         </div>
       </div>
@@ -337,14 +377,14 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="reveal py-24 px-24 relative overflow-hidden">
+<section id="projects" class="reveal py-12 md:py-24 px-4 sm:px-10 md:px-24 relative overflow-hidden">
   <div class="blob blob-anim w-80 h-80 bg-sun/15 top-0 right-0" style="animation-delay: -3s;"></div>
-  <div class="text-center mb-14 relative z-10">
+  <div class="text-center mb-10 md:mb-14 relative z-10">
     <span class="inline-block eyebrow-pill text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full">Projets</span>
-    <h2 class="font-display text-4xl font-bold text-ink mt-3 mb-2">Projets Réalisés</h2>
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-ink mt-3 mb-2">Projets Réalisés</h2>
     <p class="text-ink/60 text-sm">Découvrez une sélection de mes projets d'analyse de données et tableaux de bord</p>
   </div>
-  <div class="grid grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10 reveal-stagger">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-6xl mx-auto relative z-10 reveal-stagger">
 
     <!-- DATAVIZ -->
     <div class="card-blob border-2 border-ink overflow-hidden bg-cream hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
@@ -445,25 +485,61 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
       </div>
     </div>
 
+    <!-- SMARTFOOD AI -->
+    <div class="card-blob-alt border-2 border-ink overflow-hidden bg-cream hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+      <div class="bg-sun/25 p-6 pb-5">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 bg-sun flex items-center justify-center text-ink shrink-0" style="border-radius: 40% 60% 55% 45% / 50% 50% 50% 50%;">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+          </div>
+          <span class="text-xs font-bold text-ink/30">#04</span>
+        </div>
+        <h3 class="font-display text-lg font-bold text-ink mb-1">SmartFood AI</h3>
+        <p class="text-xs text-ink/60 leading-relaxed">Application d'analyse alimentaire intelligente — projet de fin de formation We.Code. L'IA identifie le plat et génère une analyse nutritionnelle personnalisée selon le profil de santé.</p>
+      </div>
+      <div class="p-6 pt-4 border-t-2 border-ink/10 flex-1 flex flex-col">
+        <div class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-2">Technologies utilisées</div>
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">Python</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">Streamlit</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">TensorFlow / Keras</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">MobileNetV2</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">Pandas</span>
+          <span class="text-xs px-3 py-1 rounded-full border-2 border-ink/10 bg-sun/30 text-ink font-semibold">NumPy</span>
+        </div>
+        <div class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-2">Mon aventure à We.Code</div>
+        <ul class="mb-5 space-y-1.5 flex-1">
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-sun mt-1">●</span>Prenez une photo de votre repas</li>
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-sun mt-1">●</span>L'IA identifie automatiquement le plat</li>
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-sun mt-1">●</span>Analyse nutritionnelle personnalisée (diabète, hypertension, obésité…)</li>
+          <li class="flex items-start gap-2 text-xs text-ink/70"><span class="text-sun mt-1">●</span>Machine learning, traitement d'images & analyse de données</li>
+        </ul>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="#" class="flex items-center justify-center gap-1.5 py-2.5 rounded-full text-xs font-bold border-2 border-ink text-ink bg-cream hover:bg-ink hover:text-cream no-underline transition-colors">Code</a>
+          <a href="#" class="flex items-center justify-center gap-1.5 py-2.5 rounded-full text-xs font-bold text-ink bg-sun no-underline hover:bg-ink hover:text-cream transition-colors">Démo</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 
 <!-- FORMATION -->
-<section id="formation" class="reveal py-24 px-24 relative overflow-hidden" style="background: #FFF1E0;">
+<section id="formation" class="reveal py-12 md:py-24 px-4 sm:px-10 md:px-24 relative overflow-hidden" style="background: #FFF1E0;">
   <div class="blob blob-anim w-80 h-80 bg-coral/10 top-0 left-1/3" style="animation-delay: -2s;"></div>
   <span class="inline-block eyebrow-pill text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-5 relative z-10">Formation</span>
-  <h2 class="font-display text-4xl font-bold text-ink mb-2 relative z-10">Parcours de Formation</h2>
+  <h2 class="font-display text-3xl md:text-4xl font-bold text-ink mb-2 relative z-10">Parcours de Formation</h2>
   <p class="text-ink/60 text-sm mb-8 relative z-10">Mon parcours académique et professionnel.</p>
 
   <!-- Stats -->
-  <div class="flex justify-center gap-16 bg-cream rounded-[32px] p-7 mb-14 border-2 border-ink relative z-10">
+  <div class="flex flex-wrap justify-center gap-8 md:gap-16 bg-cream rounded-[32px] p-5 md:p-7 mb-10 md:mb-14 border-2 border-ink relative z-10">
     <div class="flex flex-col items-center gap-1">
       <span class="font-display text-4xl font-bold text-coral leading-none">3</span>
       <span class="text-sm text-ink/60 font-semibold">Formations</span>
     </div>
     <div class="flex flex-col items-center gap-1">
-      <span class="font-display text-4xl font-bold text-grape leading-none">2</span>
+      <span class="font-display text-4xl font-bold text-grape leading-none">1</span>
       <span class="text-sm text-ink/60 font-semibold">En cours</span>
     </div>
     <div class="flex flex-col items-center gap-1">
@@ -477,11 +553,11 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
   </div>
 
   <!-- Timeline -->
-  <div class="relative flex flex-col gap-10">
-    <div class="absolute left-1/2 top-0 bottom-0 w-1 timeline-blob-line -translate-x-1/2 z-0"></div>
+  <div class="relative flex flex-col gap-6 md:gap-10">
+    <div class="absolute left-1/2 top-0 bottom-0 w-1 timeline-blob-line -translate-x-1/2 z-0 hidden md:block"></div>
 
     <!-- Item gauche : Epitech -->
-    <div class="grid grid-cols-[1fr_24px_1fr] items-center gap-6 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_24px_1fr] items-center gap-4 md:gap-6 relative z-10">
       <div class="bg-cream border-2 border-ink card-blob p-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
         <div class="flex justify-between items-start mb-4">
           <div class="w-12 h-12 bg-coral flex items-center justify-center text-cream shrink-0" style="border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;">
@@ -489,21 +565,21 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
           </div>
           <div class="flex flex-col items-end gap-1">
             <span class="text-xs font-bold text-ink/50">2025 – 2026</span>
-            <span class="text-xs font-bold px-3 py-1 rounded-full bg-mint/30" style="color:#1E7A52;">En cours</span>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-ink/10 text-ink/60">Compléte</span>
           </div>
         </div>
         <h3 class="font-display font-bold text-ink mb-0.5">Formation Data Analyst</h3>
-        <div class="text-sm font-bold text-coral mb-2">Epitech France (wecode) — Abidjan</div>
+        <div class="text-sm font-bold text-coral mb-2">Epitech (wecode) — Abidjan</div>
         <p class="text-xs text-ink/60 leading-relaxed">Formation spécialisée en analyse, visualisation et valorisation des données.</p>
       </div>
-      <div class="w-5 h-5 rounded-full border-[3px] border-ink bg-coral justify-self-center shrink-0"></div>
-      <div class="invisible"></div>
+      <div class="w-5 h-5 rounded-full border-[3px] border-ink bg-coral justify-self-center shrink-0 hidden md:block"></div>
+      <div class="invisible hidden md:block"></div>
     </div>
 
     <!-- Item droite : UVCI -->
-    <div class="grid grid-cols-[1fr_24px_1fr] items-center gap-6 relative z-10">
-      <div class="invisible"></div>
-      <div class="w-5 h-5 rounded-full border-[3px] border-ink bg-sun justify-self-center shrink-0"></div>
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_24px_1fr] items-center gap-4 md:gap-6 relative z-10">
+      <div class="invisible hidden md:block"></div>
+      <div class="w-5 h-5 rounded-full border-[3px] border-ink bg-sun justify-self-center shrink-0 hidden md:block"></div>
       <div class="bg-cream border-2 border-ink card-blob-alt p-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
         <div class="flex justify-between items-start mb-4">
           <div class="w-12 h-12 bg-grape flex items-center justify-center text-cream shrink-0" style="border-radius: 50% 50% 40% 60% / 55% 45% 55% 45%;">
@@ -521,7 +597,7 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
     </div>
 
     <!-- Item gauche : Bac -->
-    <div class="grid grid-cols-[1fr_24px_1fr] items-center gap-6 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_24px_1fr] items-center gap-4 md:gap-6 relative z-10">
       <div class="bg-cream border-2 border-ink card-blob p-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
         <div class="flex justify-between items-start mb-4">
           <div class="w-12 h-12 bg-mint flex items-center justify-center text-ink shrink-0" style="border-radius: 45% 55% 50% 50% / 50% 50% 50% 50%;">
@@ -529,49 +605,53 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
           </div>
           <div class="flex flex-col items-end gap-1">
             <span class="text-xs font-bold text-ink/50">2023 – 2024</span>
-            <span class="text-xs font-bold px-3 py-1 rounded-full bg-ink/10 text-ink/60">Complété</span>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-ink/10 text-ink/60">Compléte</span>
           </div>
         </div>
         <h3 class="font-display font-bold text-ink mb-0.5">Baccalauréat série D</h3>
         <div class="text-sm font-bold mb-2" style="color:#1E7A52;">Groupe Scolaire Les Roitelets — Abidjan</div>
         <p class="text-xs text-ink/60 leading-relaxed">Formation académique fondamentale, série scientifique.</p>
       </div>
-      <div class="w-5 h-5 rounded-full border-[3px] border-ink bg-mint justify-self-center shrink-0"></div>
-      <div class="invisible"></div>
+      <div class="w-5 h-5 rounded-full border-[3px] border-ink bg-mint justify-self-center shrink-0 hidden md:block"></div>
+      <div class="invisible hidden md:block"></div>
     </div>
 
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="reveal py-24 px-24 relative overflow-hidden">
+<section id="contact" class="reveal py-12 md:py-24 px-4 sm:px-10 md:px-24 relative overflow-hidden">
   <div class="blob blob-anim w-72 h-72 bg-grape/15 -bottom-20 right-0" style="animation-delay: -6s;"></div>
   <span class="inline-block eyebrow-pill text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-5 relative z-10">Contact</span>
-  <h2 class="font-display text-4xl font-bold text-ink mb-2 relative z-10">Travaillons Ensemble</h2>
-  <p class="text-ink/60 text-sm mb-12 relative z-10">Vous avez un projet ? N'hésitez pas à me contacter.</p>
-  <div class="grid grid-cols-2 gap-12 items-start relative z-10">
-    <div class="flex flex-col gap-4">
+  <h2 class="font-display text-3xl md:text-4xl font-bold text-ink mb-2 relative z-10">Travaillons Ensemble</h2>
+  <p class="text-ink/60 text-sm mb-8 md:mb-12 relative z-10">Vous avez un projet ? N'hésitez pas à me contacter.</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start relative z-10">
+    <form action="https://api.web3forms.com/submit" method="POST" class="flex flex-col gap-4">
+      <input type="hidden" name="access_key" value="re_NqvkVsHL_QHxsGN9JrYR4iaazkJ1EPLHG">
       <div class="flex flex-col gap-1.5">
-        <label class="text-xs font-bold text-ink">Nom complet</label>
-        <input type="text" placeholder="Votre nom" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors bg-cream"/>
+        <label class="text-xs font-bold text-ink" for="name">Nom complet</label>
+        <input type="text" id="name" name="name" required placeholder="Votre nom" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors bg-cream"/>
       </div>
       <div class="flex flex-col gap-1.5">
-        <label class="text-xs font-bold text-ink">Email</label>
-        <input type="email" placeholder="votre@email.com" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors bg-cream"/>
+        <label class="text-xs font-bold text-ink" for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="votre@email.com" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors bg-cream"/>
       </div>
       <div class="flex flex-col gap-1.5">
-        <label class="text-xs font-bold text-ink">Sujet</label>
-        <input type="text" placeholder="Objet de votre message" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors bg-cream"/>
+        <label class="text-xs font-bold text-ink" for="subject">Sujet</label>
+        <input type="text" id="subject" name="_subject" required placeholder="Objet de votre message" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors bg-cream"/>
       </div>
       <div class="flex flex-col gap-1.5">
-        <label class="text-xs font-bold text-ink">Message</label>
-        <textarea placeholder="Décrivez votre projet..." rows="5" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors resize-y bg-cream"></textarea>
+        <label class="text-xs font-bold text-ink" for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="Décrivez votre projet..." rows="5" class="px-4 py-3 border-2 border-ink/15 rounded-2xl text-sm text-ink outline-none focus:border-coral transition-colors resize-y bg-cream"></textarea>
       </div>
-      <button class="self-start inline-flex items-center gap-2 bg-ink hover:bg-coral text-cream font-bold text-sm px-8 py-3.5 rounded-full border-none cursor-pointer transition-colors">
+      <!-- Anti-spam honeypot -->
+      <input type="text" name="_honey" style="display:none">
+
+      <button type="submit" class="self-start inline-flex items-center gap-2 bg-ink hover:bg-coral text-cream font-bold text-sm px-8 py-3.5 rounded-full border-none cursor-pointer transition-colors">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         Envoyer le message
       </button>
-    </div>
+    </form>
     <div class="flex flex-col gap-4">
       <div class="flex items-center gap-4 bg-sun/20 border-2 border-ink/10 rounded-2xl px-5 py-4">
         <div class="w-11 h-11 bg-coral rounded-full flex items-center justify-center shrink-0">
@@ -602,9 +682,9 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
 </section>
 
 <!-- FOOTER -->
-<footer class="px-24 py-7 flex justify-between items-center" style="background:#1F1B2E;">
-  <p class="text-xs text-cream/40 font-medium">© Anne Kouakou. Tous droits réservés.</p>
-  <p class="text-xs text-cream/40 font-medium">Développé  à Port Bouët, Côte d'Ivoire</p>
+<footer class="px-4 md:px-24 py-7 flex flex-col sm:flex-row justify-between items-center gap-2" style="background:#1F1B2E;">
+  <p class="text-xs text-cream/40 font-medium text-center">© Anne Kouakou. Tous droits réservés.</p>
+  <p class="text-xs text-cream/40 font-medium text-center">Développé à Port Bouët, Côte d'Ivoire</p>
 </footer>
 
 <script>
@@ -645,6 +725,24 @@ tableaux de bord clairs pour aider à la prise de décision      </p>
     });
   }, { threshold: 0.4 });
   sections.forEach(s => scrollObs.observe(s));
+
+  // Mobile menu
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const closeMenu = document.getElementById('close-menu');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  });
+  const closeMenuFn = () => {
+    mobileMenu.classList.add('hidden');
+    document.body.style.overflow = '';
+  };
+  closeMenu.addEventListener('click', closeMenuFn);
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMenuFn);
+  });
 </script>
 </body>
 </html>
